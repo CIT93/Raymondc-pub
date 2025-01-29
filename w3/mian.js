@@ -1,6 +1,5 @@
-let CarbonFootprintPoints = 0;
-const NumberInhousehold = 3;
-
+function determineHouseHoldpts(NumberInhousehold) {
+console.log("inside the function")
 if (NumberInhousehold === 1){
     CarbonFootprintPoints = CarbonFootprintPoints + 14;
 } else if(NumberInhousehold === 2) {
@@ -15,6 +14,12 @@ if (NumberInhousehold === 1){
     CarbonFootprintPoints = CarbonFootprintPoints + 4;
 } else if(NumberInhousehold > 6) {
     CarbonFootprintPoints = CarbonFootprintPoints + 2;
-} else {
-    console.log("no updates to points");
 }
+    console.log(`Based on the number of number of the household of ${NumberInhousehold} the points would be ${CarbonFootprintPoints}.`);
+}
+let CarbonFootprintPoints = 0;
+const NumberInhousehold = 3;
+
+//space
+determineHouseHoldpts(3)
+determineHouseHoldpts(4)
