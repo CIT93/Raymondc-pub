@@ -43,7 +43,14 @@ function start(houseHoldMembers, houseSize) {
   cfpData.push([houseHoldMembers, houseSize, houseHoldPTS, houseSizePTS, total]);
 }
 function displayOutput() {
+   for (arr of cfpData) {
+    console.log(arr);
+    const output = document.getElementById("outPut");
+    const newP = document.createElement("p");
     
+    newP.textContent = `Number of household menbers: ${arr[0]}, Score based on Number of Household Members: ${arr[2]}, Size of House: ${arr[1]}, Score base on Size of House: ${arr[3]}, Total Carbon Footprint: ${arr[4]}`;
+    output.appendChild(newP);
+   }
 }
 
 start(5, "apt"); 
