@@ -1,6 +1,7 @@
 const FORM = document.getElementById("form");
 const OUTPUT = document.getElementById("output");
 const cfpData = [];
+
 function determineHouseSizePts(size) {
   let houseSizePoints = 0;
   if (size === "large") {
@@ -35,12 +36,14 @@ function determineHouseHoldPts(numberInHousehold) {
   return houseHoldPoints;
 }
 
-function start(houseHoldMembers, houseSize) {
+function start(houseHoldMembers, houseSize, firstName, lastName) {
   const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
   const houseSizePts = determineHouseSizePts(houseSize);
   const total = houseHoldPTS + houseSizePts;
 
   cfpData.push({
+    firstName: firstName,
+    lastName: lastName,
     houseM: houseHoldMembers,
     houseS: houseSize,
     houseMPTS: houseHoldPTS,
@@ -50,38 +53,41 @@ function start(houseHoldMembers, houseSize) {
 }
 
 function displayOutput() {
- 
-  for (obj of cfpData) {
+  OUTPUT.innerHTML = "";
+
+  for (const obj of cfpData) {
     console.log(obj);
+
+    const newH1 = document.createElement("h1");
+    newH1.textContent = `For ${obj.firstName} ${obj.lastName}`;
 
     const newH2 = document.createElement("h2");
     newH2.textContent = `Carbon Footprint total is ${obj.cfpTotal}`;
+
     const newH3 = document.createElement("h3");
     newH3.textContent = `Based on Number in Household and Size of Home`;
+
     const newP = document.createElement("p");
     newP.textContent = `This number is based on the number in household of ${obj.houseM} (score: ${obj.houseMPTS}) `;
     newP.textContent += `and a ${obj.houseS} size of home (score: ${obj.houseSPTS})`;
 
+    OUTPUT.appendChild(newH1);
     OUTPUT.appendChild(newH2);
     OUTPUT.appendChild(newH3);
     OUTPUT.appendChild(newP);
   }
 }
 
-
-
-
-
-
-FORM.addEventListener(`submit`, function (e) {
+FORM.addEventListener("submit", function (e) {
   e.preventDefault();
-  
+
   const firstName = FORM.firstname.value;
   const lastName = FORM.lastname.value;
   const houseMembers = parseInt(FORM.housem.value);
   const houseSize = FORM.houses.value;
-  start(houseMembers, houseSize);
-  OUTPUT.innerHTML = "";
+
+  start(houseMembers, houseSize, firstName, lastName);
+
   displayOutput();
   FORM.reset();
 });

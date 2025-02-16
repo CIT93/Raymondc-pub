@@ -8,30 +8,34 @@
       html {
         font-size: 22px;
       }
+
       body {
         background-color: #333;
         color: whitesmoke;
       }
+
       input:in-range {
         background-color: lightgreen;
       }
+
       input:out-of-range {
         background-color: lightcoral;
       }
     </style>
   </head>
   <script defer src="main.js"></script>
+
   <body>
     <form id="form">
       <fieldset>
         <legend>Calculating Your Carbon Footprint Points</legend>
         <div>
           <label for="">First Name:</label>
-          <input type="text" name="firstname" required />
+          <input type="text" name="firstname" maxlength="20" required />
         </div>
         <div>
           <label for="">Last Name:</label>
-          <input type="text" name="lastname" required />
+          <input type="text" name="lastname" maxlength="20" required />
         </div>
         <div>
           <label>Count the members of your household</label>
@@ -40,13 +44,13 @@
         <div>
           <label>Consider the size of your home</label>
           <!-- <input type="text" name="houses" required /> -->
-           <select name = "houses" required>
+          <select name="houses" required>
             <option value="">---Please enter size of home---</option>
             <option value="apt">Apartment</option>
             <option value="large">Large</option>
             <option value="medium">Medium</option>
             <option value="small">Small</option>
-           </select>
+          </select>
         </div>
 
         <button type="Submit">Submit</button>
