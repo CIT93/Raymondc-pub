@@ -97,21 +97,24 @@ displayOutput();*/
 
 
 const moviesArr = [
-  { title: "Oppenheimer", year: 2023, rating: "8.3/10" },
-  { title: "Past Lives", year: 2023, rating: "7.8/10" },
-  { title: "Death on the Nile", year: 2022, rating: "8.2/10" },
-  { title: "Uncharted", year: 2022, rating: "8.5/10" },
+  { title: "Oppenheimer", year: 2023, rating: 8.3, watched: 3 },
+  { title: "Past Lives", year: 2023, rating: 7.8, watched: 1 },
+  { title: "Death on the Nile", year: 2022, rating: 8.2, watched: 6 },
+  { title: "Uncharted", year: 2022, rating: 8.5, watched: 4 },
 ];
 
 function displayOutMovies() {
   const output = document.getElementById("output");
   
-  for (const obj of moviesArr) {
-    console.log(obj);
-    const newH1 = document.createElement("h1");
-    newH1.textContent = `${obj.title} (released in ${obj.year}) has a rating of ${obj.rating}`;
-    output.appendChild(newH1);
-  }
+  moviesArr.forEach((Obj) => {
+    console.log(Obj);
+    
+    if ((Obj.rating > 6 && Obj.watched < 5) || (Obj.rating < 7 || Obj.watched < 5)) {
+      const newH1 = document.createElement("h1");
+      newH1.textContent = `${Obj.title} (released in ${Obj.year}) has a rating of ${Obj.rating}/10 and has been watched ${Obj.watched} times.`;
+      output.appendChild(newH1);
+    }
+  });
 }
 
 displayOutMovies();
