@@ -102,19 +102,49 @@ const moviesArr = [
   { title: "Death on the Nile", year: 2022, rating: 8.2, watched: 6 },
   { title: "Uncharted", year: 2022, rating: 8.5, watched: 4 },
 ];
-
+const moviesTable = document.getElementById("movies-data");
 function displayOutMovies() {
-  const output = document.getElementById("output");
-  
-  moviesArr.forEach((Obj) => {
-    console.log(Obj);
-    
-    if ((Obj.rating > 6 && Obj.watched < 5) || (Obj.rating < 7 || Obj.watched < 5)) {
-      const newH1 = document.createElement("h1");
-      newH1.textContent = `${Obj.title} (released in ${Obj.year}) has a rating of ${Obj.rating}/10 and has been watched ${Obj.watched} times.`;
-      output.appendChild(newH1);
-    }
+  const table = document.createElement("table");
+
+  const thead = document.createElement("thead");
+  const tr = document.createElement("tr");
+
+  const headingTextArr = ["Title", "Year", "Rating", "Watched"];
+  headingTextArr.forEach(function (text) {
+    const th = document.createElement("th");
+    th.textContent = text;
+    tr.appendChild(th);
   });
+
+  thead.appendChild(tr);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+
+  moviesArr.forEach(function (obj) {
+    const tr = document.createElement("tr");
+
+    const tdTitle = document.createElement("td");
+    const tdYear = document.createElement("td");
+    const tdRating = document.createElement("td");
+    const tdWatched = document.createElement("td");
+
+    tdTitle.textContent = obj.title;
+    tdYear.textContent = obj.year;
+    tdRating.textContent = obj.rating;
+    tdWatched.textContent = obj.watched;
+
+    tr.appendChild(tdTitle);
+    tr.appendChild(tdYear);
+    tr.appendChild(tdRating);
+    tr.appendChild(tdWatched);
+
+    tbody.appendChild(tr);
+  });
+
+  table.appendChild(tbody);
+
+  moviesTable.appendChild(table);
 }
 
 displayOutMovies();
