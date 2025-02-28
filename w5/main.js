@@ -67,8 +67,6 @@ cfpData.push({
  
 }*/
 
-
-
 //function displayOutput(myCfpObj) {
 //for(myCfpObj) {
 //const output = document.getElementById("Output");
@@ -95,7 +93,7 @@ displayOutput();*/
 
 // an array of of onjects
 
-
+const output = document.getElementById("output");
 const moviesArr = [
   { title: "Oppenheimer", year: 2023, rating: 8.3, watched: 3 },
   { title: "Past Lives", year: 2023, rating: 7.8, watched: 1 },
@@ -122,24 +120,32 @@ function displayOutMovies() {
   const tbody = document.createElement("tbody");
 
   moviesArr.forEach(function (obj) {
-    const tr = document.createElement("tr");
+    moviesTable.innerHTML = "";
+    output.innerHTML = "";
+    if (obj.rating > 6 && obj.watched < 5) {
+      const newH1 = document.createElement("h1");
+      newH1.textContent = `Interesting movies to watch!`;
+      output.appendChild(newH1);
 
-    const tdTitle = document.createElement("td");
-    const tdYear = document.createElement("td");
-    const tdRating = document.createElement("td");
-    const tdWatched = document.createElement("td");
+      const tr = document.createElement("tr");
 
-    tdTitle.textContent = obj.title;
-    tdYear.textContent = obj.year;
-    tdRating.textContent = obj.rating;
-    tdWatched.textContent = obj.watched;
+      const tdTitle = document.createElement("td");
+      const tdYear = document.createElement("td");
+      const tdRating = document.createElement("td");
+      const tdWatched = document.createElement("td");
 
-    tr.appendChild(tdTitle);
-    tr.appendChild(tdYear);
-    tr.appendChild(tdRating);
-    tr.appendChild(tdWatched);
+      tdTitle.textContent = obj.title;
+      tdYear.textContent = obj.year;
+      tdRating.textContent = obj.rating;
+      tdWatched.textContent = obj.watched;
 
-    tbody.appendChild(tr);
+      tr.appendChild(tdTitle);
+      tr.appendChild(tdYear);
+      tr.appendChild(tdRating);
+      tr.appendChild(tdWatched);
+
+      tbody.appendChild(tr);
+    }
   });
 
   table.appendChild(tbody);
