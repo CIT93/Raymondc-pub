@@ -1,51 +1,11 @@
 import { renderTbl } from "./render.js";
 import { determineHouseSizePts, determineHouseHoldPts } from "./cfp.js";
-import {FORM} from "./global.js"
-import{saveLS, cfpData} from "./storage.js"
+import { FORM } from "./global.js";
+import { saveLS, cfpData } from "./storage.js";
 
-function validateForm(event) {
-    const name = event.target.value;
-    const nameId = event.target.id;
-    const nameError = document.getElementById(`${nameId}Error`);
-    if (name === '') {
-        nameError.textContent = `${nameId} is required`;
-        event.target.classList.add("invalid");
-    } else {
-        nameError.textContent = '';
-        event.target.classList.remove("invalid");
-    }
-}
-
-document.getElementById('firstName').addEventListener("blur", validateForm);
-document.getElementById('lastName').addEventListener("blur", validateForm);
-
-FORM.addEventListener("submit", function(event) {
-    event.preventDefault(); 
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    let valid = true;
-    if (firstName === '') {
-        document.getElementById("firstNameError").textContent = "First Name is required";
-        document.getElementById("firstName").classList.add("invalid");
-        valid = false;
-    } else {
-        document.getElementById("firstNameError").textContent = "";
-        document.getElementById("firstName").classList.remove("invalid");
-    }
-
-    if (lastName === '') {
-        document.getElementById("lastNameError").textContent = "Last Name is required";
-        document.getElementById("lastName").classList.add("invalid");
-        valid = false;
-    } else {
-        document.getElementById("lastNameError").textContent = "";
-        document.getElementById("lastName").classList.remove("invalid");
-    }
-    if (valid) {
-        FORM.submit();  // Submit the form
-    }
-});
-
+const firstNameEl = document.getElementById("firstName");
+const lastNameEl = document.getElementById("lastName");
+const submitEl = document.getElementById("submitError")
 function start(houseHoldMembers, houseSize, firstName, lastName) {
   const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
   const houseSizePts = determineHouseSizePts(houseSize);
@@ -61,18 +21,45 @@ function start(houseHoldMembers, houseSize, firstName, lastName) {
     cfpTotal: total,
   });
 }
-renderTbl(cfpData);
+renderTbl(cfpData); 
 
+// function to validate a single field
+function validateField(event) {
+    const field = event.target.value;
+    const fieldId = event.target.id;
+    const fieldError = document.getElementById(`${fieldId}Error`);
+    if (field === '') {
+      fieldError.textContent = `${fieldId} is required`;
+      event.target.classList.add('invalid');
+    } else {
+      fieldError.textContent = '';
+      event.target.classList.remove('invalid');
+    }
+  }
+  // attach blur event listeners
+  firstNameEl.addEventListener("blur", validateField);
+  lastNameEl.addEventListener("blur", validateField);
+  
+ 
 FORM.addEventListener("submit", function (e) {
   e.preventDefault();
   const firstName = FORM.firstname.value;
   const lastName = FORM.lastname.value;
+  const firstNameIsValid = firstNameEl.value !== '';
+const lastNameIsValid = lastNameEl.value !=='';
+if (firstNameIsValid && lastNameIsValid){
+    submitEl.textContent = '';
   const houseMembers = parseInt(FORM.housem.value);
   const houseSize = FORM.houses.value;
   start(houseMembers, houseSize, firstName, lastName);
- saveLS(cfpData);
+  saveLS(cfpData);
   renderTbl(cfpData);
   FORM.reset();
+}else {
+   
+  submitEl.textContent = "Form requires first name and last name ";
+    
+}
 });
 
 // the apartment score is not correct because in our js code we apt but in the html we have apartment. So the the scored is not being picked up by the html.
