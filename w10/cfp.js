@@ -1,4 +1,5 @@
-const determineHouseSizePts = (...size) => {
+const determineHouseSizePts = (...sizes) => {
+  return sizes.map(size => {
     let houseSizePoints = 0;
     if (size === "large") {
       houseSizePoints = 10;
@@ -10,8 +11,12 @@ const determineHouseSizePts = (...size) => {
       houseSizePoints = 2;
     }
     return houseSizePoints;
-  }
-  
+  });
+};
+
+const sizes = ["large", "small", "medium"];
+console.log(determineHouseSizePts(...sizes));
+
   const determineHouseHoldPts = (numberInHousehold) => {
     let houseHoldPoints = 0;
     if (numberInHousehold === 1) {
@@ -31,5 +36,6 @@ const determineHouseSizePts = (...size) => {
     }
     return houseHoldPoints;
   }
+
   export { determineHouseSizePts, determineHouseHoldPts };
   
