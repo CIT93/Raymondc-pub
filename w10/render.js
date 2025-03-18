@@ -14,7 +14,7 @@ const renderTblHeading = () => {
     "Footprint",
     "Actions",
   ];
-  headingTextArr.forEach( (text) => {
+  headingTextArr.forEach( text => {
     const th = document.createElement("th");
     th.textContent = text;
     tr.appendChild(th);
@@ -25,7 +25,7 @@ const renderTblHeading = () => {
   return table;
 }
 
-const onUpdate = (index = 0, data = []) => {
+const onUpdate = (index, data) => {
   data.splice(index, 1);
   saveLS(data);
   renderTbl(data);
@@ -58,9 +58,9 @@ const renderTblBtn = (obj, index, data) => {
   return td;
 }
 
-const renderTblBody = (data =[]) => {
+const renderTblBody = data => {
   const tbody = document.createElement("tbody");
-  data.forEach(function (obj, index) {
+  data.forEach((obj, index)=> {
     const tr = document.createElement("tr");
     for (const [key, value] of Object.entries(obj)) {
       if (key !== "lastName" && key !== "houseMPTS" && key !== "houseSPTS") {
@@ -76,7 +76,7 @@ const renderTblBody = (data =[]) => {
   return tbody;
 }
 
-const renderTbl = (data) => {
+const renderTbl = data => {
   TBL.innerHTML = "";
   if (data.length !== 0) {
     const table = renderTblHeading();
