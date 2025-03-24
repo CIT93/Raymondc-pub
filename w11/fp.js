@@ -1,11 +1,14 @@
 class FP {
-    constructor(first, last, houseMembers, houseSize) {
+    constructor(first, last, houseMembers, houseSize, foodChoice) {
       this.first = first;
       this.last = last;
       this.houseMembers = houseMembers;
       this.houseSize = houseSize;
+      this.foodChoice = foodChoice
       this.houseHoldPoints();
       this.houseSizePoints();
+      this.foodChoicePoints();
+      
       this.total();
     }
     houseSizePoints() {
@@ -36,8 +39,19 @@ class FP {
         this.houseHoldPoints = 2;
       }
     }
+    foodChoicePoints(){
+      if (this.foodChoice === "domesticMeatDaily") {
+        this.foodChoicePoints = 10;
+      } else if (this.foodChoice === "domesticMeatWeekly") {
+        this.foodChoicePoints = 8;
+      } else if (this.foodChoice === "vegetarian") {
+        this.foodChoicePoints = 4;
+      } else if (this.foodChoice === "veganOrWildMeat") {
+        this.foodChoicePoints = 2;
+      }  
+    }
     total() {
-      this.total = this.houseHoldPoints + this.houseSizePoints;
+      this.total = this.houseHoldPoints + this.houseSizePoints + this.foodChoicePoints;
     }
   }
   //created the methods using the introduce example

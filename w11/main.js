@@ -49,7 +49,8 @@ FORM.addEventListener("submit", (e) => {
       FNAME.value,
       LNAME.value,
       parseInt(FORM.housem.value),
-      FORM.houses.value
+      FORM.houses.value,
+      FORM.food.value
     );
     // fpObj.houseSizePoints();
     // fpObj.houseHoldPoints();

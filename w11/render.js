@@ -11,6 +11,7 @@ const renderTblHeading = () => {
     "Name",
     "HouseHold",
     "HouseSize",
+    "FoodChoice",
     "Footprint",
     "Actions",
   ];
@@ -50,6 +51,7 @@ const renderTblBtn = (obj, index, data) => {
     FORM[2].value = obj.last;
     FORM[3].value = obj.houseMembers;
     FORM[4].value = obj.houseSize;
+    FORM[5].value = obj.foodChoice;
     onUpdate(index, data);
   });
 
@@ -64,7 +66,8 @@ const renderTblBody = (data) => {
       if (
         key !== "last" &&
         key !== "houseHoldPoints" &&
-        key !== "houseSizePoints"
+        key !== "houseSizePoints" &&
+        key !=="foodChoicePoints"
       ) {
         const td = document.createElement("td");
         td.textContent = value;
