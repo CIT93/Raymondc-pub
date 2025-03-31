@@ -24,7 +24,7 @@ FORM.addEventListener("submit", function (event) {
         const stopMessage = document.createElement("p");
         stopMessage.textContent = `Stop ${exercise}`;
         output.appendChild(stopMessage);
-    },5000); 
+    },parseInt(time)*1000); 
 });
 }
 getFitExercise();
