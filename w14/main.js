@@ -10,10 +10,9 @@ async function getData() {
       const data = await response.json();
 
       // Limit to first 100 photos
-      data.slice(0, 100).forEach(photo => {
+      data.slice(0, 500).forEach(photo => {
         const img = document.createElement("img");
         img.src = photo.thumbnailUrl;
-        img.style.margin = "10px";
         output.appendChild(img);
       });
     } else {
