@@ -1,6 +1,5 @@
 const output = document.getElementById("output");
-
-const url = "https://jsonplaceholder.typicode.com/photos";
+const url = "https://picsum.photos/v2/list";
 
 async function getData() {
   try {
@@ -9,10 +8,12 @@ async function getData() {
     if (response.ok) {
       const data = await response.json();
 
-      // Limit to first 100 photos
-      data.slice(0, 500).forEach(photo => {
+      // Limit to first 20 photos to avoid overloading the browser
+      data.slice(0, 20).forEach(photo => {
         const img = document.createElement("img");
-        img.src = photo.thumbnailUrl;
+        img.src = `https://picsum.photos/id/${photo.id}/200/200`;
+        img.alt = photo.author;
+        img.style.margin = "10px";
         output.appendChild(img);
       });
     } else {
