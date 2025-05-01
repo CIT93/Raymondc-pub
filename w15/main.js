@@ -54,8 +54,6 @@ FORM.addEventListener("submit", (e) => {
     cfpData.push(fpObj);
     saveLS(cfpData);
     renderTbl(cfpData);
-    const avg = calculateAverage();
-    addRow(avg);
     FORM.reset();
   } else {
     SUBMIT.textContent = "Form requires first name and last name ";

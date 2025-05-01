@@ -84,6 +84,8 @@ const renderTbl = (data) => {
     const tbody = renderTblBody(data);
     table.appendChild(tbody);
     TBL.appendChild(table);
+    const avg = calculateAverage();
+    addRow(avg);
   }
 };
 
