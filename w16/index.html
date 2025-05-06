@@ -74,6 +74,17 @@
                 <input type="checkbox" id = "dishAndWasher" name = "dishAndWasher"checked>
             </div>
         </div>
+        <div>
+          <label >Household purchases per year</label>
+          <select name="purchase" required>
+              <option value="">---Please enter household purchase per year---</option>
+              <option value="10">More than 7 items purchased</option>
+              <option value="8">Between 5 and 7 items purchased</option>
+              <option value="6">Between 3 and 5 items purchased</option>
+              <option value="4">Less than 3 items purchased</option>
+              <option value="2">Almost nothing or seconhand items purchased</option>
+          </select>
+      </div>
         <button type="Submit">Submit</button>
         <span id = "submitError" class = "error" ></span>
       </fieldset>
