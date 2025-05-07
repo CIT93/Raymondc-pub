@@ -3,6 +3,20 @@ import { FORM, FNAME, LNAME, SUBMIT } from "./global.js";
 import { saveLS, cfpData } from "./storage.js";
 import { FP } from "./fp.js";
 
+const waterInput = FORM.water;
+const dishCheckbox = FORM.dishAndWasher;
+
+// Handle checkbox state based on water input
+waterInput.addEventListener("input", () => {
+  const waterValue = parseInt(waterInput.value);
+  if (isNaN(waterValue) || waterValue === 0) {
+    dishCheckbox.checked = false;
+    dishCheckbox.disabled = true;
+  } else {
+    dishCheckbox.disabled = false;
+    dishCheckbox.checked = true;
+  }
+});
 
 const start = (first, last, houseHoldMembers, houseSize) => {
   const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
@@ -34,7 +48,7 @@ const validateField = (event) => {
   }
 };
 
-// attach blur event listeners
+// Attach blur event listeners
 FNAME.addEventListener("blur", validateField);
 LNAME.addEventListener("blur", validateField);
 
@@ -43,7 +57,7 @@ FORM.addEventListener("submit", (e) => {
 
   if (FNAME.value !== "" && LNAME.value !== "") {
     SUBMIT.textContent = "";
-    //start( FNAME.value, LNAME.value, parseInt(FORM.housem.value),  FORM.houses.value);
+
     const fpObj = new FP(
       FNAME.value,
       LNAME.value,
@@ -51,13 +65,21 @@ FORM.addEventListener("submit", (e) => {
       e.target.houses.value,
       e.target.food.value,
       e.target.foodSource.value,
-      parseInt(e.target.water.value), e.target.dishAndWasher.checked,
+      parseInt(e.target.water.value),
+      e.target.dishAndWasher.checked,
       parseInt(e.target.purchase.value)
     );
+
     cfpData.push(fpObj);
     saveLS(cfpData);
     renderTbl(cfpData);
+
     FORM.reset();
+
+    // Set checkbox to default checked and enabled state
+    dishCheckbox.checked = true;
+    dishCheckbox.disabled = false;
+
   } else {
     SUBMIT.textContent = "Form requires first name and last name ";
   }

@@ -9,7 +9,7 @@ class FP {
       this.waterConsum = waterConsum;
       this.hasDishAndWasher = hasDishAndWasher;
       this.waterConsumPoints = FP.calculateWaterPoints(waterConsum, hasDishAndWasher);
-      this.itemPurchasePoints = itemPurchase
+      this.itemPurchasePoints = itemPurchase;
   
       this.calHouseHoldPoints();
       this.calHouseSizePoints();
