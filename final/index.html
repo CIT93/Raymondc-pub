@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script type="module" src="main.js"></script>
+</head>
+<link rel="stylesheet" href="style.css" />
+
+<body>
+  <form id="form">
+    <fieldset>
+      <legend>Bible Study Guide</legend>
+      <div>
+        <label for="">First Name:</label>
+        <input  type="text" id = "firstName" 
+          name="firstname" 
+        />
+        <span id = "firstNameError" class = "error" ></span>
+      </div>
+      <div>
+        <label for="">Last Name:</label>
+        <input type = "text" id = "lastName" 
+          name="lastname"
+        />
+        <span id = "lastNameError" class = "error" ></span>
+      </div>
+      <div>
+        <label>One Year Membership</label>
+        <select name="oneYearMeb" id="oneYearMeb">
+          <span id="oneYearMebError" class="error"></span>
+          <option value="">---Please answer True or False---</option>
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Completed Foundation School</label>
+        <select name="completedFS" id="completedFS">
+          <span id="completedFSError" class="error"></span>
+          <option value="">---Please answer True or False---</option>
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Active in Department</label>
+        <select name="activeInDept" id="activeInDept">
+          <span id="activeInDeptError" class="error"></span>
+          <option value="">---Please answer True or False---</option>
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Belong to a Cell</label>
+        <select name="belongsToCell" id="belongsToCell">
+          <span id="belongsToCellError" class="error"></span>
+          <option value="">---Please answer True or False---</option>
+          <option value="true">True</option>
+          <option value="false">False</option>
+        </select>
+      </div>
+      <div>
+        <label>Number of Books Studied</label>
+        <input type="number" name="books" min="1" max="7" required />
+      </div>
+      <div>
+        <label>Number of Meassages Studied</label>
+        <input type="number" name="messages" min="1" max="7" required />
+      </div>
+      <div>
+        <label>Bible Study Stage </label>
+        <select name="stages" required>
+          <option value="">---Please enter your Study Stage---</option>
+          <option value="first">First</option>
+          <option value="second">Second</option>
+          <option value="third">Third</option>
+          <option value="fourth">Fourth</option>
+        </select>
+      </div>
+
+      <button type="Submit">Submit</button>
+      <span id="submitError" class="error"></span>
+    </fieldset>
+  </form>
+  <div id="result"></div>
+  <div id="output"></div>
+  <div id="tab-data"></div>
+  <div id = "table-id"></div>
+</body>
+
+</html>
